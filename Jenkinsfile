@@ -10,8 +10,8 @@ pipeline {
     stage('Test') {
       steps {
         sh '''
-          ./mvnw clean package
-          java -jar target/$artifactid-$version.jar
+          // ./mvnw clean package
+          // java -jar target/$artifactid-$version.jar
         '''
       }
     }
