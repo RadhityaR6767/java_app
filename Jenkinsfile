@@ -4,7 +4,7 @@ pipeline {
     stage('Test') {
       steps {
         sh '''
-          a=$(sed -n 's|<artifactId>\(.*\)</artifactId>|\1|p' pom.xml)
+          a=$(sed -n 's|<artifactId>\\(.*\\)</artifactId>|\\1|p' pom.xml)
           echo $a | cut -d ' ' -f1
         '''
       }
