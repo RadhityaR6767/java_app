@@ -42,7 +42,8 @@ pipeline {
     }
     stage('Deploy K8s') {
       steps {
-        sh 'k get po'
+        sh 'sed -i "s|<<ARTIFACTID>>|${ARTIFACT_ID}|g; s|<<VERSION>>|${VERSION}|g; s|<<CRED_REG>>|$DOCKERHUB_CREDENTIALS_USR|g" k8s/deployment.yaml'
+        sh 'cat k8s/deployment.yaml'
       }
     }
   }
