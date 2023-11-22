@@ -32,6 +32,8 @@ pipeline {
       steps {
         sh 'sed -i "s|<<ARTIFACTID>>|${ARTIFACT_ID}|g; s|<<VERSION>>|${VERSION}|g" Dockerfile'
         sh 'cat Dockerfile'
+        sh 'docker build -t ${ARTIFACT_ID}:${VERSION} .'
+        sh 'docker images'
       }
     }
     stage('Deploy') {
