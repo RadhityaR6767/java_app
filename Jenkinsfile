@@ -16,6 +16,7 @@ pipeline {
     stage('Docker Build') {
       steps {
         sh 'docker images'
+        sh './script.sh'
       }
     }
     stage('Deploy') {
