@@ -1,7 +1,7 @@
 pipeline {
   agent any
   environment {
-    POM_VERSION = sh(script: "/bin/bash -c 'sed -n \'/<version>/,/<version/p\' pom.xml | head -1 | sed \'s/[[:blank:]]*<\/*version>//g\'\''", returnStdout: true)
+    POM_VERSION = sh(script: "/bin/bash -c 'sed -n \'/<version>/,/<version/p\' pom.xml | head -1 | sed \'s/[[:blank:]]*<\\/*version>//g\'\''", returnStdout: true)
   }
   stages {
     stage('Test') {
