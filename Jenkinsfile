@@ -9,7 +9,7 @@ pipeline {
       steps {
         sh '''
           ./mvnw clean package
-          java -jar target/${a}-${b}.jar
+          java -jar target/env.a-env.b.jar
         '''
       }
     }
