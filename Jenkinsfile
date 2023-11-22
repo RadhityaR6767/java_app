@@ -18,6 +18,7 @@ pipeline {
     def values = extractArtifactAndVersion()
     ARTIFACT_ID = "${values[0]}"
     VERSION = "${values[1]}"
+    DOCKERHUB_CREDENTIALS = credentials('dockerhub')
   }
   stages {
     stage('Test') {
@@ -32,8 +33,10 @@ pipeline {
       steps {
         sh 'sed -i "s|<<ARTIFACTID>>|${ARTIFACT_ID}|g; s|<<VERSION>>|${VERSION}|g" Dockerfile'
         sh 'cat Dockerfile'
+        sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
         sh 'docker build -t ${ARTIFACT_ID}:${VERSION} .'
-        sh 'docker images'
+        sh 'docker tag ${ARTIFACT_ID}:${VERSION} $DOCKERHUB_CREDENTIALS_USR/${ARTIFACT_ID}:${VERSION}'
+        sh 'docker push $DOCKERHUB_CREDENTIALS_USR/${ARTIFACT_ID}:${VERSION}'
       }
     }
     stage('Deploy') {
