@@ -18,7 +18,6 @@ pipeline {
     def values = extractArtifactAndVersion()
     ARTIFACT_ID = "${values[0]}"
     VERSION = "${values[1]}"
-    HEHE = "xixi"
   }
   stages {
     stage('Test') {
@@ -31,7 +30,8 @@ pipeline {
     }
     stage('Docker Build') {
       steps {
-        sh 'echo "build"'
+        sh 'sed -i "s|<<ARTIFACTID>>|${ARTIFACT_ID}|g; s|<<VERSION>>|${VERSION}|g" Dockerfile'
+        sh 'cat Dockerfile'
       }
     }
     stage('Deploy') {
