@@ -8,6 +8,7 @@ pipeline {
     stage('Test') {
       steps {
         sh '''
+          echo $a
           ./mvnw clean package
           java -jar target/env.a-env.b.jar
         '''
