@@ -1,7 +1,7 @@
 pipeline {
   agent any
   environment {
-    a = sh(script: "/bin/bash -c 'sed -n \'s|<artifactId>\\(.*\\)</artifactId>|\\1|p\' pom.xml'", returnStdout: true)
+    a = $/eval "sed -n 's|<artifactId>\\(.*\\)</artifactId>|\\1|p' pom.xml | cut -d ' ' -f1" /$
   }
   stages {
     stage('Test') {
