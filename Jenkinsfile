@@ -1,15 +1,13 @@
 pipeline {
   agent any
   environment {
-    a = sh(script: "sed -n 's|<artifactId>\\(.*\\)</artifactId>|\\1|p' pom.xml", returnStdout: true)
-    b = sh(script: "sed -n 's|<version>\\(.*\\)</version>|\\1|p' pom.xml", returnStdout: true)
-    artifactid = sh(script: "echo $a | cut -d ' ' -f1", returnStdout: true)
-    version = sh(script: "echo $b | cut -d ' ' -f1", returnStdout: true)
+    a = sh(script: "/bin/bash -c 'sed -n 's|<artifactId>\\(.*\\)</artifactId>|\\1|p' pom.xml | cut -d ' ' -f1'", returnStdout: true)
+    b = sh(script: "/bin/bash -c 'sed -n 's|<version>\\(.*\\)</version>|\\1|p' pom.xml'", returnStdout: true)
   }
   stages {
     stage('Test') {
       steps {
-        sh 'echo $version'
+        sh 'echo $b'
         // ./mvnw clean package
         // java -jar target/$artifactid-$version.jar
       }
