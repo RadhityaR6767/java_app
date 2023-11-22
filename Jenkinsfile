@@ -23,10 +23,10 @@ pipeline {
   stages {
     stage('Test') {
       steps {
-        sh 'echo "$HEHE"'
-        sh 'echo "A: ${ARTIFACT_ID}, B:${VERSION}"'
-        sh './mvnw clean package'
-        sh "java -jar target/${ARTIFACT_ID}-${VERSION}.jar"
+        sh '''
+          ./mvnw clean package
+          java -jar target/${ARTIFACT_ID}-${VERSION}.jar
+        '''
       }
     }
     stage('Docker Build') {
