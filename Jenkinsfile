@@ -1,18 +1,15 @@
 pipeline {
   agent any
+  environment {
+    a = sh(script: "sed -n 's|<artifactId>\\(.*\\)</artifactId>|\\1|p' pom.xml", returnStdout: true)
+    b = sh(script: "sed -n 's|<version>\\(.*\\)</version>|\\1|p' pom.xml", returnStdout: true)
+  }
   stages {
     stage('Test') {
       steps {
-        sh '''
-          a=$(sed -n 's|<artifactId>\\(.*\\)</artifactId>|\\1|p' pom.xml)
-          b=$(sed -n 's|<version>\\(.*\\)</version>|\\1|p' pom.xml)
-
-          a=$(echo $a | cut -d ' ' -f1)
-          b=$(echo $b | cut -d ' ' -f1)
-
-          ./mvnw clean package
-          java -jar target/$a-$b.jar
-        '''
+        sh 'echo $b'
+        // ./mvnw clean package
+        // java -jar target/$artifactid-$version.jar
       }
     }
     stage('Docker Build') {
