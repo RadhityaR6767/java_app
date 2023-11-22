@@ -16,4 +16,4 @@ spec:
     spec:
       containers:
         - name: hello-world-app
-          image: <<CRED_REG>>:<<ARTIFACTID>>:<<VERSION>>
+          image: <<CRED_REG>>/<<ARTIFACTID>>:<<VERSION>>
