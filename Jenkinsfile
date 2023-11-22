@@ -16,8 +16,8 @@ pipeline {
   agent any
   environment {
     def values = extractArtifactAndVersion()
-    ARTIFACT_ID = values[0]
-    VERSION = values[1]
+    ARTIFACT_ID = "${values[0]}"
+    VERSION = "${values[1]}"
   }
   stages {
     stage('Test') {
