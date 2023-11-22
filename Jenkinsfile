@@ -9,11 +9,9 @@ pipeline {
   stages {
     stage('Test') {
       steps {
-        sh '''
-          echo $b
+        sh 'echo $b'
           // ./mvnw clean package
           // java -jar target/$artifactid-$version.jar
-        '''
       }
     }
     stage('Docker Build') {
