@@ -3,7 +3,8 @@ pipeline {
   stages {
     stage('Test') {
       steps {
-        sh "./script.sh"
+        sh "a=$(sed -n 's|<artifactId>\(.*\)</artifactId>|\1|p' pom.xml)"
+        sh "echo $a | cut -d ' ' -f1"
       }
     }
     stage('Build') {
