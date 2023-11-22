@@ -10,6 +10,7 @@ pipeline {
     stage('Test') {
       steps {
         sh '''
+          echo $version
           // ./mvnw clean package
           // java -jar target/$artifactid-$version.jar
         '''
