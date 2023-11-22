@@ -1,8 +1,8 @@
 pipeline {
   agent any
   environment {
-    a = sh(script: "sed -n 's|<artifactId>\\(.*\\)</artifactId>|\\1|p' pom.xml | cut -d ' ' -f1", returnStdout: true)
-    b = sh(script: "sed -n 's|<version>\\(.*\\)</version>|\\1|p' pom.xml | cut -d ' ' -f1", returnStdout: true)
+    a = sh(script: "(sed -n 's|<artifactId>\\(.*\\)</artifactId>|\\1|p' pom.xml) | cut -d ' ' -f1", returnStdout: true)
+    b = sh(script: "(sed -n 's|<version>\\(.*\\)</version>|\\1|p' pom.xml) | cut -d ' ' -f1", returnStdout: true)
     c = sh(script: "ls pom.xml", returnStdout: true)
   }
   stages {
