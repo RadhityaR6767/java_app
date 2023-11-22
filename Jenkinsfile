@@ -18,11 +18,12 @@ pipeline {
     def values = extractArtifactAndVersion()
     ARTIFACT_ID = "${values[0]}"
     VERSION = "${values[1]}"
+    HEHE = "xixi"
   }
   stages {
     stage('Test') {
       steps {
-        echo '${values}'
+        echo '${HEHE}'
         echo 'A: ${ARTIFACT_ID}, B:${VERSION}'
         sh './mvnw clean package'
         sh "java -jar target/${ARTIFACT_ID}-${VERSION}.jar"
