@@ -15,6 +15,7 @@ pipeline {
     }
     stage('Docker Build') {
       steps {
+        sh 'cat Dockerfile'
         sh 'docker images'
         sh './script.sh'
       }
