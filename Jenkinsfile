@@ -22,6 +22,7 @@ pipeline {
   stages {
     stage('Test') {
       steps {
+        echo 'A: ${ARTIFACT_ID}, B:${VERSION}'
         sh './mvnw clean package'
         sh "java -jar target/${ARTIFACT_ID}-${VERSION}.jar"
       }
