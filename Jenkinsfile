@@ -10,13 +10,17 @@ pipeline {
           a=$(echo $a | cut -d ' ' -f1)
           b=$(echo $b | cut -d ' ' -f1)
           java -jar target/$a-$b.jar
-          ./mvnw clean
         '''
       }
     }
-    stage('Build') {
+    stage('Docker Build') {
+      agent {
+        docker {
+          image 'docker'
+        }
+      }
       steps {
-        echo "build"
+        sh 'docker images'
       }
     }
     stage('Deploy') {
