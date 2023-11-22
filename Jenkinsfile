@@ -11,6 +11,7 @@ pipeline {
           b=$(echo $b | cut -d ' ' -f1)
           java -jar target/$a-$b.jar
           ./mvnw clean
+        '''
       }
     }
     stage('Build') {
