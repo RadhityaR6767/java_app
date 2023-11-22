@@ -11,7 +11,7 @@ pipeline {
     }
     stage('Build') {
       steps {
-        cat aaa.txt
+        sh 'cat aaa.txt'
       }
     }
     stage('Deploy') {
