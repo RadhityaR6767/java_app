@@ -4,7 +4,7 @@ def extractArtifactAndVersion() {
         def version = sh(script: "sed -n 's|<version>\\(.*\\)</version>|\\1|p' pom.xml", returnStdout: true).trim()
 
         artifactId = artifactId.split(' ')[0].split(' ')[1].replaceAll("\\s","")
-        version = version.split(' ')[0].split(' ').[1].replaceAll("\\s","")
+        version = version.split(' ')[0].split(' ')[1].replaceAll("\\s","")
 
         return [artifactId, version]
     } catch (Exception e) {
