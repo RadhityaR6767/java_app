@@ -3,8 +3,8 @@ def extractArtifactAndVersion() {
         def artifactId = sh(script: "sed -n 's|<artifactId>\\(.*\\)</artifactId>|\\1|p' pom.xml", returnStdout: true).trim()
         def version = sh(script: "sed -n 's|<version>\\(.*\\)</version>|\\1|p' pom.xml", returnStdout: true).trim()
 
-        artifactId = artifactId.split(' ')[1].replaceAll("\\s","")
-        version = version.split(' ')[1].replaceAll("\\s","")
+        artifactId = artifactId.split(' ')[0].replaceAll("\\s","")
+        version = version.split(' ')[0].replaceAll("\\s","")
 
         return [artifactId, version]
     } catch (Exception e) {
