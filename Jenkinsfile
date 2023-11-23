@@ -37,7 +37,6 @@ pipeline {
         sh 'docker build -t ${ARTIFACT_ID}:${VERSION} .'
         sh 'docker tag ${ARTIFACT_ID}:${VERSION} $DOCKERHUB_CREDENTIALS_USR/${ARTIFACT_ID}:${VERSION}'
         sh 'docker push $DOCKERHUB_CREDENTIALS_USR/${ARTIFACT_ID}:${VERSION}'
-        sh 'docker system prune -f'
       }
     }
     stage('Deploy K8s') {
@@ -50,6 +49,7 @@ pipeline {
   }
   post {
     always {
+      sh 'docker system prune -f'
       sh 'docker logout'
     }
   }
