@@ -25,8 +25,8 @@ pipeline {
       steps {
         sh '''
           ./mvnw clean package
-          java -jar target/${ARTIFACT_ID}-${VERSION}.jar
         '''
+          // java -jar target/${ARTIFACT_ID}-${VERSION}.jar
       }
     }
     stage('Docker Build') {
